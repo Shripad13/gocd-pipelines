@@ -1,0 +1,67 @@
+format_version: 10                # pipeline version from gocd, based on this options would vary 
+pipelines: 
+  frontend:                                             # name of the pipeline job that will be showing on UI
+    group: Group1                               # group name to which this pipeline belongs
+    label_template: "${COUNT}"                  # label template for the pipeline, ${COUNT} is a predefined variable
+    materials:
+      frontend-code:
+        git: https://github.com/Shripad13/Ansible.git
+        branch: main
+        auto_update: true 
+        shallow_clone: true                  # perform shallow clone to save time and space
+        display_order: -1                    # display order of the material in UI
+        lock_behavior: none                  # lock behavior if multiple pipelines are using the same material
+    stages:
+      - dev:
+          fetch_materials: true    # fetch the materials before executing the job
+          keep_artifacts: false    # whether to keep the artifacts after job execution or not
+          clean_workspace: false   # clean the workspace before job execution        
+          jobs:
+            Build:
+              tasks:
+                - exec:
+                    command: ls
+                    arguments: ["Building the frontend application..."]
+                    - -lrtah
+
+
+
+      - qa:
+          fetch_materials: true    # fetch the materials before executing the job
+          keep_artifacts: false    # whether to keep the artifacts after job execution or not
+          clean_workspace: false   # clean the workspace before job execution        
+          jobs:
+            Build:
+              tasks:
+                - exec:
+                    command: ls
+                    arguments: ["Building the frontend application..."]
+                    - -lrtah                    
+
+
+
+      - stage:
+          fetch_materials: true    # fetch the materials before executing the job
+          keep_artifacts: false    # whether to keep the artifacts after job execution or not
+          clean_workspace: false   # clean the workspace before job execution        
+          jobs:
+            Build:
+              tasks:
+                - exec:
+                    command: ls
+                    arguments: ["Building the frontend application..."]
+                    - lrth                  
+
+
+
+      - prod:
+          fetch_materials: true    # fetch the materials before executing the job
+          keep_artifacts: false    # whether to keep the artifacts after job execution or not
+          clean_workspace: false   # clean the workspace before job execution        
+          jobs:
+            Build:
+              tasks:
+                - exec:
+                    command: ls
+                    arguments: ["Building the frontend application..."]
+                    - -lrtah                    
