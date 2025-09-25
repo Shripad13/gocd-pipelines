@@ -1,6 +1,16 @@
 # gocd-pipelines
 gocd-pipelines
 
+# GoCD server & GoCd Agent Integration
+
+gocd server Private should be updated on gocd Agent server in /home/gocd/go-agent-23.5.0/wrapper-config/wrapper-properties.conf file 
+
+Update wrapper.app.parameter.101  line and replace localhost with gocd server ip address
+
+
+Restart the restart gocd-agent service
+$ systemctl restart gocdagent
+
 
 ### Reference of tomzo for gocd
 https://github.com/tomzo/gocd-yaml-config-plugin

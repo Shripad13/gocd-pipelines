@@ -1,7 +1,7 @@
 format_version: 10                # pipeline version from gocd, based on this options would vary 
 pipelines: 
-  sample-gocd:                                             # name of the pipeline job that will be showing on UI
-    group: Group1                               # group name to which this pipeline belongs
+  frontend:                                             # name of the pipeline job that will be showing on UI
+    group: Expense-App-Deployment                               # group name to which this pipeline belongs
     label_template: "${COUNT}"                  # label template for the pipeline, ${COUNT} is a predefined variable
     materials:
       Ansible-code:
@@ -13,61 +13,74 @@ pipelines:
         lock_behavior: none                  # lock behavior if multiple pipelines are using the same material
     stages:
       - dev:
-          fetch_materials: true    # fetch the materials before executing the job
-          keep_artifacts: false    # whether to keep the artifacts after job execution or not
           clean_workspace: false   # clean the workspace before job execution        
+          environment_variables:
+            ENV: dev
+            COMPONENT: frontend
           jobs:
             Build:
               tasks:
                 - exec:
                     command: ls
                     arguments: ["-lrth"]
+                - exec:
+                    command: ls
+                    arguments: ["init.sh"]                    
 
 
       - qa:
-          fetch_materials: true    # fetch the materials before executing the job
-          keep_artifacts: false    # whether to keep the artifacts after job execution or not
-          clean_workspace: false   # clean the workspace before job execution   
           approval:
             type: manual
-            allow_only_on_success: true    
+            allow_only_on_success: true 
+            environment_variables:
+              ENV: qa
+              COMPONENT: frontend               
           jobs:
             Build:
               tasks:
                 - exec:
                     command: ls
-                    arguments: ["-lrtah"]               
+                    arguments: ["-lrtah"] 
+                - exec:
+                    command: ls
+                    arguments: ["init.sh"]                                   
 
 
 
       - stage:
-          fetch_materials: true    # fetch the materials before executing the job
-          keep_artifacts: false    # whether to keep the artifacts after job execution or not
-          clean_workspace: false   # clean the workspace before job execution
           approval:
-            type: manual 
-            allow_only_on_success: true                              
+            type: manual
+            allow_only_on_success: true 
+            environment_variables:
+              ENV: stage
+              COMPONENT: frontend                               
           jobs:
             Build:
               tasks:
                 - exec:
                     command: ls
                     arguments: ["-lrtah"]
+                - exec:
+                    command: ls
+                    arguments: ["init.sh"]                     
                
 
 
 
       - prod:
-          fetch_materials: true    # fetch the materials before executing the job
-          keep_artifacts: false    # whether to keep the artifacts after job execution or not
-          clean_workspace: false   # clean the workspace before job execution
           approval:
             type: manual
-            allow_only_on_success: true                           
+            allow_only_on_success: true 
+            environment_variables:
+              ENV: prod
+              COMPONENT: frontend                           
           jobs:
             Build:
               tasks:
                 - exec:
                     command: ls
                     arguments: ["-lrtah"]
+                - exec:
+                    command: ls
+                    arguments: ["init.sh"]                     
                   
