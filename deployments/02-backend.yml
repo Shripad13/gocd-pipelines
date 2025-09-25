@@ -24,7 +24,7 @@ pipelines:
                     command: ls
                     arguments: ["-lrth"]
                 - exec:
-                    command: ls
+                    command: bash
                     arguments: ["init.sh"]                    
 
 
@@ -42,7 +42,7 @@ pipelines:
                     command: ls
                     arguments: ["-lrtah"] 
                 - exec:
-                    command: ls
+                    command: bash
                     arguments: ["init.sh"]                                   
 
 
@@ -61,7 +61,7 @@ pipelines:
                     command: ls
                     arguments: ["-lrtah"]
                 - exec:
-                    command: ls
+                    command: bash
                     arguments: ["init.sh"]                     
                
 
@@ -81,6 +81,6 @@ pipelines:
                     command: ls
                     arguments: ["-lrtah"]
                 - exec:
-                    command: ls
+                    command: bash
                     arguments: ["init.sh"]                     
                   
