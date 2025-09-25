@@ -1,10 +1,10 @@
 format_version: 10                # pipeline version from gocd, based on this options would vary 
 pipelines: 
-  frontend:                                             # name of the pipeline job that will be showing on UI
+  sample-gocd:                                             # name of the pipeline job that will be showing on UI
     group: Group1                               # group name to which this pipeline belongs
     label_template: "${COUNT}"                  # label template for the pipeline, ${COUNT} is a predefined variable
     materials:
-      frontend-code:
+      Ansible-code:
         git: https://github.com/Shripad13/Ansible.git
         branch: main
         auto_update: true 
