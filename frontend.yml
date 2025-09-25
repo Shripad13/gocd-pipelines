@@ -27,7 +27,9 @@ pipelines:
       - qa:
           fetch_materials: true    # fetch the materials before executing the job
           keep_artifacts: false    # whether to keep the artifacts after job execution or not
-          clean_workspace: false   # clean the workspace before job execution        
+          clean_workspace: false   # clean the workspace before job execution   
+          approval:
+            type: manual    
           jobs:
             Build:
               tasks:
@@ -40,7 +42,9 @@ pipelines:
       - stage:
           fetch_materials: true    # fetch the materials before executing the job
           keep_artifacts: false    # whether to keep the artifacts after job execution or not
-          clean_workspace: false   # clean the workspace before job execution        
+          clean_workspace: false   # clean the workspace before job execution
+          approval:
+            type: manual                  
           jobs:
             Build:
               tasks:
@@ -54,7 +58,9 @@ pipelines:
       - prod:
           fetch_materials: true    # fetch the materials before executing the job
           keep_artifacts: false    # whether to keep the artifacts after job execution or not
-          clean_workspace: false   # clean the workspace before job execution        
+          clean_workspace: false   # clean the workspace before job execution
+          approval:
+            type: manual              
           jobs:
             Build:
               tasks:
