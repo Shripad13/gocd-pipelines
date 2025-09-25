@@ -24,8 +24,6 @@ pipelines:
                     arguments: ["Building the frontend application..."]
                     - -lrtah
 
-
-
       - qa:
           fetch_materials: true    # fetch the materials before executing the job
           keep_artifacts: false    # whether to keep the artifacts after job execution or not
@@ -36,7 +34,7 @@ pipelines:
                 - exec:
                     command: ls
                     arguments: ["Building the frontend application..."]
-                    - -lrtah                    
+                    - -lrth                   
 
 
 
