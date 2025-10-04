@@ -24,3 +24,16 @@ when we use right tool will get right output.
 GoCD YAML files pattern - **/*.yml  (so that all the folders check for the changes in inside repo & *.yml files)
 
 Rules - Resources - mention as * to include everything 
+
+
+# To Generate an Encrypted key for gocd using API -
+RUn below command on gocd Server only
+Secrets encrypted by one Gocd cannot be decrypted by other 
+
+'''
+Syntax 
+$ curl 'https://ci.example.com/go/api/admin/encrypt' -u 'username:password' -H 'Accept: application/vnd.go.cd.v1+json'-H 'Content-Type: application/json' -X POST -d '{"value": "badger"}'
+
+Actual command -
+$ curl 'https://localhost:8153/go/api/admin/encrypt' -H 'Accept: application/vnd.go.cd.v1+json'-H 'Content-Type: application/json' -X POST -d '{"value": "DevOps321"}'
+$ curl 'https://localhost:8153/go/api/admin/encrypt' -H 'Accept: application/vnd.go.cd.v1+json'-H 'Content-Type: application/json' -X POST -d '{"value": "ExpenseApp@1"}'

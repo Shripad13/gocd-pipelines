@@ -11,12 +11,17 @@ pipelines:
         shallow_clone: true                  # perform shallow clone to save time and space
         display_order: -1                    # display order of the material in UI
         lock_behavior: none                  # lock behavior if multiple pipelines are using the same material
+    environment_variables:
+        COMPONENT: frontend
+    secure_variables:
+        SSH_PWD: ""
+    pipeline: true    
+
     stages:
       - dev:
           clean_workspace: false   # clean the workspace before job execution        
           environment_variables:
             ENV: dev
-            COMPONENT: frontend
           jobs:
             Build:
               tasks:
@@ -33,8 +38,7 @@ pipelines:
             type: manual
             allow_only_on_success: true 
             environment_variables:
-              ENV: qa
-              COMPONENT: frontend               
+              ENV: qa               
           jobs:
             Build:
               tasks:
@@ -52,8 +56,7 @@ pipelines:
             type: manual
             allow_only_on_success: true 
             environment_variables:
-              ENV: stage
-              COMPONENT: frontend                               
+              ENV: stage                               
           jobs:
             Build:
               tasks:
@@ -72,8 +75,7 @@ pipelines:
             type: manual
             allow_only_on_success: true 
             environment_variables:
-              ENV: prod
-              COMPONENT: frontend                           
+              ENV: prod                           
           jobs:
             Build:
               tasks:
