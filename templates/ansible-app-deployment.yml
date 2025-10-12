@@ -1,4 +1,4 @@
-{% comment %} format_version: 10               # pipeline version from gocd, based on this options would vary      
+format_version: 10               # pipeline version from gocd, based on this options would vary      
 pipelines:                      
   App-Deployment-Template:                    # name of the pipeline job that will be showing on UI                                       
     group: Templates                          # group name to which this pipeline belongs
@@ -80,4 +80,4 @@ pipelines:
                 - exec:
                     command: bash 
                     arguments:
-                    - init.sh {% endcomment %}    
+                    - init.sh   
