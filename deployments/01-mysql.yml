@@ -14,7 +14,7 @@ pipelines:
     environment_variables:
         COMPONENT: mysql
     secure_variables:
-        SSH_PWD: ""    
+        SSH_PWD: "AES:NKYuszy1UK22pl59n0RD7g==:jPTmi+A84fJiNFAnJyrHhw=="    
 
     
     stages:
@@ -23,7 +23,7 @@ pipelines:
           environment_variables:
             ENV: dev
           secure_variables:
-            MySQL_PWD: ""            
+            MySQL_PWD: "AES:7PQPsFZ2HasPQpLJUeWEMw==:1xTMVEpc9IQHpD36uQON4g=="            
           jobs:
             Build:
               tasks:
