@@ -1,7 +1,7 @@
 format_version: 10                # pipeline version from gocd, based on this options would vary 
 pipelines: 
   tools-infra-create:                                             # name of the pipeline job that will be showing on UI
-    group: tools-automation                               # group name to which this pipeline belongs
+    group: Terraform                               # group name to which this pipeline belongs
     label_template: "${COUNT}"                  # label template for the pipeline, ${COUNT} is a predefined variable
     materials:
       tools-automation:
@@ -12,9 +12,9 @@ pipelines:
         display_order: -1                    # display order of the material in UI
         lock_behavior: none                  # lock behavior if multiple pipelines are using the same material
     environment_variables:
-        COMPONENT: mysql
+        action: apply
     secure_variables:
-        SSH_PWD: ""    
+        SSH_PWD: "AES:NKYuszy1UK22pl59n0RD7g==:jPTmi+A84fJiNFAnJyrHhw=="    
     stages:
       - infra:
           fetch_materials: true
