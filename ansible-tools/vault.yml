@@ -14,7 +14,7 @@ pipelines:
     environment_variables:
         tool_name: vault
     secure_variables:
-        SSH_PWD: ""    
+        SSH_PWD: "AES:NKYuszy1UK22pl59n0RD7g==:jPTmi+A84fJiNFAnJyrHhw=="    
     stages:
       - infra:
           fetch_materials: true

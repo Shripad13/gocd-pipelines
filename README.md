@@ -39,8 +39,25 @@ Syntax
 $ curl 'https://ci.example.com/go/api/admin/encrypt' -u 'username:password' -H 'Accept: application/vnd.go.cd.v1+json'-H 'Content-Type: application/json' -X POST -d '{"value": "badger"}'
 
 Actual command -
-$ curl 'https://localhost:8153/go/api/admin/encrypt' -H 'Accept: application/vnd.go.cd.v1+json'-H 'Content-Type: application/json' -X POST -d '{"value": "DevOps321"}'
-$ curl 'https://localhost:8153/go/api/admin/encrypt' -H 'Accept: application/vnd.go.cd.v1+json'-H 'Content-Type: application/json' -X POST -d '{"value": "ExpenseApp@1"}'
+$curl 'http://localhost:8153/go/api/admin/encrypt' \
+  -H 'Accept: application/vnd.go.cd.v1+json' \
+  -H 'Content-Type: application/json' \
+  -X POST \
+  -d '{"value": "DevOps321"}'
+
+
+"encrypted_value of above command" : "AES:NKYuszy1UK22pl59n0RD7g==:jPTmi+A84fJiNFAnJyrHhw=="
+
+
+$ curl 'http://localhost:8153/go/api/admin/encrypt' \
+  -H 'Accept: application/vnd.go.cd.v1+json' \
+  -H 'Content-Type: application/json' \
+  -X POST \
+  -d '{"value": "ExpenseApp@1"}'
+
+
+"encrypted_value for above command " : "AES:7PQPsFZ2HasPQpLJUeWEMw==:1xTMVEpc9IQHpD36uQON4g=="
+
 
 
 #### Going Forward -
