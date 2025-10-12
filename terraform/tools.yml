@@ -1,0 +1,26 @@
+format_version: 10                # pipeline version from gocd, based on this options would vary 
+pipelines: 
+  tools-infra-create:                                             # name of the pipeline job that will be showing on UI
+    group: tools-automation                               # group name to which this pipeline belongs
+    label_template: "${COUNT}"                  # label template for the pipeline, ${COUNT} is a predefined variable
+    materials:
+      tools-automation:
+        git: https://github.com/Shripad13/tools-automation.git
+        branch: main
+        auto_update: true 
+        shallow_clone: true                  # perform shallow clone to save time and space
+        display_order: -1                    # display order of the material in UI
+        lock_behavior: none                  # lock behavior if multiple pipelines are using the same material
+    environment_variables:
+        COMPONENT: mysql
+    secure_variables:
+        SSH_PWD: ""    
+    stages:
+      - infra:
+          fetch_materials: true
+          keep_artifacts: false
+          clean_workspace: false  # clean the workspace before job execution
+          jobs:
+            terraform:
+              tasks:
+                - exec: {command: bash, arguments: ["init.sh"] }

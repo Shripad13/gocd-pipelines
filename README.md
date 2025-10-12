@@ -3,13 +3,17 @@ gocd-pipelines
 
 # GoCD server & GoCd Agent Integration
 
-gocd server Private should be updated on gocd Agent server in /home/gocd/go-agent-23.5.0/wrapper-config/wrapper-properties.conf file 
+gocd server Private IP should be updated on gocd Agent server in /home/gocd/go-agent-23.5.0/wrapper-config/wrapper-properties.conf file 
 
 Update wrapper.app.parameter.101  line and replace localhost with gocd server ip address
 
 
 Restart the restart gocd-agent service
 $ systemctl restart gocdagent
+
+
+log path - /home/gocd/go-agent-23.5.0/logs/go-agent.log
+
 
 
 ### Reference of tomzo for gocd
@@ -37,3 +41,10 @@ $ curl 'https://ci.example.com/go/api/admin/encrypt' -u 'username:password' -H '
 Actual command -
 $ curl 'https://localhost:8153/go/api/admin/encrypt' -H 'Accept: application/vnd.go.cd.v1+json'-H 'Content-Type: application/json' -X POST -d '{"value": "DevOps321"}'
 $ curl 'https://localhost:8153/go/api/admin/encrypt' -H 'Accept: application/vnd.go.cd.v1+json'-H 'Content-Type: application/json' -X POST -d '{"value": "ExpenseApp@1"}'
+
+
+#### Going Forward -
+GOCD (no secrets) ----------(authentication token)-------->> VAULT (sqlpwd, ssh-pwd, backend-pwd)
+
+GOCD will only host one secret/token thats needed to authenticated to vault.
+This secret will be an encrypted secret that only goCD can read.

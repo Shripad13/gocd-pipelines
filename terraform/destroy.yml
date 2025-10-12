@@ -1,0 +1,41 @@
+format_version: 10                
+pipelines: 
+  expense_terraform_destroy:                                             # name of the pipeline job that will be showing on UI
+    group: Expense-Terraform-App-Deployment                               # group name to which this pipeline belongs
+    materials:
+      terraform-code:
+        git: https://github.com/Shripad13/expense-terraform.git
+        auto_update: true 
+        shallow_clone: true
+        display_order: -1
+        lock_behavior: none
+    secure_variables:
+        ssh_pwd: "AES:2OIP4os11Nz8gJ+jtzoUMg==:9RKApCuI7ST7rHEU5UsKuA=="
+        vault_token: "AES:0MnF+owJSEFkTnSRpoRm3Q==:XnoIrHIhEi1FmIt2UFmPY8rf+H03P2Pv7VE7SRt4Zus="
+    environment_variables:
+        COMPONENT: frontend
+        action: destroy 
+    stages:                                       
+      - dev:                                       
+          fetch_materials: true 
+          keep_artifacts: false
+          clean_workspace: false
+          environment_variables: { env: dev }
+          approval: { type: manual }
+          jobs:
+            terraform:
+              tasks:
+                - exec: { command: bash, arguments: ["init.sh"] }
+
+
+      - prod:                                       
+          fetch_materials: true 
+          keep_artifacts: false
+          clean_workspace: false
+          environment_variables: { env: prod }
+          approval: { type: manual }
+          jobs:
+            terraform:
+              tasks:
+                - exec: { command: bash, arguments: ["init.sh"] }
+
